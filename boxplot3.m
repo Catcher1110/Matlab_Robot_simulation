@@ -1,44 +1,35 @@
-function boxplot3(varargin)
-narginchk(4,7);
-if nargin == 4
-    x0 = varargin{1};
-    y0 = varargin{2};
-    z0 = varargin{3};
-    k = varargin{4};
-    lx = 4;
-    ly = 4;
-    lz = 4;
-elseif nargin == 7
-    x0 = varargin{1};
-    y0 = varargin{2};
-    z0 = varargin{3};
-    lx = varargin{4};
-    ly = varargin{5};
-    lz = varargin{6};
-    k = varargin{7};
+%cuberobot.boxplot Draw a picture of the cuberobot
+function boxplot3(cuberobot,k)
+center = cuberobot.center;
+x0 = center(1);
+y0 = center(2);
+z0 = center(3);
+apex = cuberobot.apex;
+point = cell(1,8);
+for i = 1:1:8
+    point{i} = apex(:,i)';
 end
 %x0,y0,z0分别为正方体中心坐标；
-%lx,ly,lz分别为边长的一半；
 %k为颜色参数需要加''例：boxplot3(x0,y0,z0,lx,ly,lz,'r')为红色填充图
-x=zeros(6,5);y=zeros(6,5);z=zeros(6,5);
-x=[x0-lx x0+lx x0+lx x0-lx x0-lx;
-    x0-lx x0-lx x0-lx x0-lx x0-lx;
-    x0-lx x0+lx x0+lx x0-lx x0-lx;
-    x0-lx x0+lx x0+lx x0-lx x0-lx;
-    x0-lx x0+lx x0+lx x0-lx x0-lx;
-    x0+lx x0+lx x0+lx x0+lx x0+lx];
-y=[y0-ly y0-ly y0-ly y0-ly y0-ly;
-    y0-ly y0-ly y0+ly y0+ly y0-ly;
-    y0-ly y0-ly y0+ly y0+ly y0-ly;
-    y0-ly y0-ly y0+ly y0+ly y0-ly;
-    y0+ly y0+ly y0+ly y0+ly y0+ly;
-    y0-ly y0-ly y0+ly y0+ly y0-ly];
-z=[z0-lz z0-lz z0+lz z0+lz z0-lz;
-    z0-lz z0+lz z0+lz z0-lz z0-lz;
-    z0+lz z0+lz z0+lz z0+lz z0+lz;
-    z0-lz z0-lz z0-lz z0-lz z0-lz;
-    z0-lz z0-lz z0+lz z0+lz z0-lz;
-    z0-lz z0+lz z0+lz z0-lz z0-lz];
+%绘图顺序15621，12431，26842，15731，37843，56875
+x=[point{1}(1) point{5}(1) point{6}(1) point{2}(1) point{1}(1);
+   point{1}(1) point{2}(1) point{4}(1) point{3}(1) point{1}(1);
+   point{2}(1) point{6}(1) point{8}(1) point{4}(1) point{2}(1);
+   point{1}(1) point{5}(1) point{7}(1) point{3}(1) point{1}(1);
+   point{3}(1) point{7}(1) point{8}(1) point{4}(1) point{3}(1);
+   point{5}(1) point{6}(1) point{8}(1) point{7}(1) point{5}(1)];
+y=[point{1}(2) point{5}(2) point{6}(2) point{2}(2) point{1}(2);
+   point{1}(2) point{2}(2) point{4}(2) point{3}(2) point{1}(2);
+   point{2}(2) point{6}(2) point{8}(2) point{4}(2) point{2}(2);
+   point{1}(2) point{5}(2) point{7}(2) point{3}(2) point{1}(2);
+   point{3}(2) point{7}(2) point{8}(2) point{4}(2) point{3}(2);
+   point{5}(2) point{6}(2) point{8}(2) point{7}(2) point{5}(2)];
+z=[point{1}(3) point{5}(3) point{6}(3) point{2}(3) point{1}(3);
+   point{1}(3) point{2}(3) point{4}(3) point{3}(3) point{1}(3);
+   point{2}(3) point{6}(3) point{8}(3) point{4}(3) point{2}(3);
+   point{1}(3) point{5}(3) point{7}(3) point{3}(3) point{1}(3);
+   point{3}(3) point{7}(3) point{8}(3) point{4}(3) point{3}(3);
+   point{5}(3) point{6}(3) point{8}(3) point{7}(3) point{5}(3)];
 plot3(0,50,0,50,0,50) %初始的范围为x:0~1000,y:0~1000,z:0~1000 可以改动设置范围进行调整
 hold on
 %plot3(0,0,0)

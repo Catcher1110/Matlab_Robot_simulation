@@ -1,0 +1,12 @@
+function rot = CrotC(a,b,c,cita)
+        temp1 = sqrt(a^2+b^2+c^2);
+        a = a/temp1;
+        b = b/temp1;
+        c = c/temp1;
+        vers = 1-cos(cita);
+        cf = cos(cita);
+        sf = sin(cita);
+        rot = [a*a*vers+cf,b*a*vers-c*sf,c*a*vers+c*sf,0;
+               a*b*vers+c*sf,b*b*vers+cf,c*b*vers-b*sf,0;
+               a*c*vers-b*sf,b*c*vers+a*sf,c*c*vers+cf,0;
+               0,0,0,1];
