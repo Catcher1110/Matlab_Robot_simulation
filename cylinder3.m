@@ -110,4 +110,5 @@ if lines==0
     set(Cylinder,'EdgeAlpha',0)
 
 end
+rotate3d;
 pause(0.2);

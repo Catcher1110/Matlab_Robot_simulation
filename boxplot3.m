@@ -31,7 +31,7 @@ z=[point{1}(3) point{5}(3) point{6}(3) point{2}(3) point{1}(3);
    point{3}(3) point{7}(3) point{8}(3) point{4}(3) point{3}(3);
    point{5}(3) point{6}(3) point{8}(3) point{7}(3) point{5}(3)];
 plot3(0,50,0,50,0,50) %初始的范围为x:0~1000,y:0~1000,z:0~1000 可以改动设置范围进行调整
-rotate3d;
+
 hold on
 %plot3(0,0,0)
 %kk=[k k k k k];
@@ -45,4 +45,5 @@ set(get(gca,'xLabel'),'String','x轴');%设置坐标轴名称
 set(get(gca,'yLabel'),'String','y轴');
 set(get(gca,'zLabel'),'String','z轴');
 set(gca,'box','on');%设置成网格化，看起来方便，如果不用可以把on改成off
+rotate3d;
 pause(0.05);

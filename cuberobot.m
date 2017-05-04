@@ -58,12 +58,35 @@ classdef cuberobot < handle
             end
         end
         
+        function disconectcube(a,b)
+            %DISCONNECTCUBE connect two cuberobots
+            %disconnect(a,b)
+            %a and b must be the cuberobot
+            %The function will tell you whether it can be disconnected or not
+            if whethercon(a,b) == 0
+                disp('These two parts haven''t been connected');
+            else
+                i = 1;
+                while(a.connec(i,2) ~= b.num)
+                    i = i+1;
+                end
+                a.connec(i,2) = 0;
+                
+                j = 1;
+                while(b.connec(j,2) ~= a.num)
+                    j = j+1;
+                end
+                b.connec(j,2) = 0;
+            end
+        end
+                
         function cubeplot(varargin)
             %CUBEPLOT draw the cuberobot and the connect parts
-            %cubeplot(a,b,c,...)
+            %cubeplot(a,b,c,...) or 
             %a,b,c,... must be the cuberobot
             %The function will judge whether any two paets are connected or
             %not,if not,it will not draw the connect part
+            
             cubenum = nargin;
             tempplot = cell(1,cubenum);
             for i = 1:1:cubenum
@@ -79,14 +102,17 @@ classdef cuberobot < handle
                     connecplot(tempplot{i},tempplot{j});
                 end
             end
-                        
+            rotate3d;         
         end
         
         function connecplot(a,b)
             %CONNECPLOT judge the connection and draw it
             %connecplot(a,b) a,b must be the cuberobot
+            rotate3d;
             if whethercon(a,b)
                 cylinder3(a.center,b.center,0.5,50,'k',1,0);
+            else
+                return
             end
         end
         
